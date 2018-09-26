@@ -4,7 +4,7 @@ class Node:
         self.key =  key
         self.right = None
         self.left = None
- def Path( root, path, k):
+ def findPath( root, path, k):
      path.append(root.key)
      if root.key == k :
         return True
