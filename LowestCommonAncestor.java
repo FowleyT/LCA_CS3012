@@ -1,7 +1,10 @@
 import java.util.HashMap;
 import java.util.Map;
- public class LowestCommonAncestor {
- }
+
+public class LowestCommonAncestor {
+
+
+}
 class DAG<Key extends Comparable<Key>, Value> {
 	Map<Key, Node> nodes;
 
@@ -16,8 +19,10 @@ class DAG<Key extends Comparable<Key>, Value> {
 			this.key = key;
 			this.parents = new HashMap<Key, Node>();
 			this.children = new HashMap<Key, Node>();
- 		}
- 	}
+
+		}
+
+	}
 
 	public DAG() {
 		this.nodes = new HashMap<Key, Node>();
@@ -66,6 +71,7 @@ class DAG<Key extends Comparable<Key>, Value> {
     	connect(nodes.get(parentK), nodes.get(childK));
     }
 
+
 	public Key lowestCommonAncestor(Key i, Key j) {
 		if(!contains(i) || !contains(j)) return null;
 
@@ -74,7 +80,8 @@ class DAG<Key extends Comparable<Key>, Value> {
 		Node nodeJ = nodes.get(j);
 		markAncestorNodes(marker, nodeI);
 		markCommonAncestorNodes(marker, nodeJ);
- 		for(Map.Entry<Node, Character> e : marker.entrySet()){
+
+		for(Map.Entry<Node, Character> e : marker.entrySet()){
 			if(e.getValue() == 'B'){
 				for(Map.Entry<Key, Node> p : e.getKey().parents.entrySet()){
 					marker.put(p.getValue(), 'C');
@@ -115,13 +122,6 @@ class DAG<Key extends Comparable<Key>, Value> {
 	}
 
 
-	public void printAncestorsList() {
-		System.out.println("Ancestors List:" );
-		for(Node n: nodes.values()) {
-        	System.out.println("Key: " + n.key + " num ancestors: " +  genNumAncestors(n));
-		}
-	}
-
 	private int genNumAncestors(Node n) {
 		Map<Key, Node> isVisited = new HashMap<Key, Node>();
 		return genNumAncestors(n, isVisited);
@@ -136,4 +136,5 @@ class DAG<Key extends Comparable<Key>, Value> {
 		}
 		return numAncestors;
 	}
- }
+
+}
